@@ -3,8 +3,6 @@
   import { base } from '$app/paths';
   import { fly } from 'svelte/transition';
 
-  const paypalUsername = 'AxelLab427'; // Update this!
-  const donationAmounts = [1, 3, 5, 10];
   const currentYear = new Date().getFullYear();
   
   let isDropdownOpen = false;
@@ -44,11 +42,28 @@
 
         {#if isDropdownOpen}
           <div class="bmac-dropdown" transition:fly={{ y: -10, duration: 250 }}>
-            {#each donationAmounts as amount}
-              <a href="https://paypal.me/{paypalUsername}/{amount}" target="_blank" on:click={closeDropdown}>
-                ${amount}
-              </a>
-            {/each}
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              $3 – One Coffee
+            </a>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              $5 – Two Coffees
+            </a>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+              $10 – Three Coffees
+            </a>
+            <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown} class="custom-amount">
+              Custom Amount
+            </a>
+
+            <a 
+              href="bitcoin:bc1q3p0e6vt492m4w4fpz5m2cl4zcfuqqkgaj6myc9?label=AxelBase&message=Buy%20me%20a%20coffee"
+              target="_blank" 
+              rel="noopener" 
+              on:click={closeDropdown}
+              class="crypto-option"
+            >
+              Buy via Crypto (Bitcoin)
+            </a>
           </div>
         {/if}
       </div>
@@ -107,6 +122,8 @@
     display: flex;
     align-items: center;
     box-shadow: 0 4px 15px rgba(100, 28, 52, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s ease;
   }
 
   .bmac-button:hover {
@@ -124,23 +141,45 @@
     margin-top: 10px;
     padding: 10px;
     z-index: 1000;
-    min-width: 120px;
+    min-width: 200px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    border: 1px solid rgba(0, 143, 57, 0.1);
   }
 
   .bmac-dropdown a {
-    padding: 8px 15px;
+    padding: 10px 15px;
     text-decoration: none;
     color: var(--text-color);
     border-radius: 10px;
     transition: var(--transition);
+    font-size: 0.95rem;
   }
 
   .bmac-dropdown a:hover {
     background-color: #fceef2;
     color: var(--primary-color);
+  }
+
+  .custom-amount {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+
+  .crypto-option {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-top: 1px solid #ddd;
+    text-align: center;
+    margin-top: 4px;
+    padding-top: 12px;
+  }
+
+  .crypto-option:hover {
+    background-color: rgba(0, 143, 57, 0.08);
   }
 
   .fixed-bottom-footer {
