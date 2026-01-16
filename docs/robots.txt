@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axelbase.github.io/crypto-be-tool/sitemap.xml
+Sitemap: https://crypto-be-tool.vercel.app/sitemap.xml
